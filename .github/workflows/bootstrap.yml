@@ -1,16 +1,18 @@
-# Second trigger after workflow registration
 name: Bootstrap source release
 
 on:
   push:
     paths:
       - ".github/workflows/bootstrap.yml"
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
 
 jobs:
   publish:
+    if: github.event_name == 'push' || github.event.issue.title == 'bootstrap-v0.1.0'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

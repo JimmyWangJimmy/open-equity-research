@@ -1,0 +1,59 @@
+name: Bootstrap source release
+
+on:
+  push:
+    paths:
+      - ".github/workflows/bootstrap.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Reconstruct and verify source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat bootstrap_parts/part* > /tmp/source.zip.b64
+          echo "3cfb0f2ebb970feffc7eff1a9fe4236219ae00ac0b8b8656f8b2ade23f332d7d  /tmp/source.zip.b64" | sha256sum --check --strict
+          base64 --decode /tmp/source.zip.b64 > /tmp/source.zip
+          echo "00dba7d57bfb593b6ac828213ae250cc8fe0c79b31c0f359b6b6b1874d17defa  /tmp/source.zip" | sha256sum --check --strict
+          unzip -t /tmp/source.zip
+          rm -rf /tmp/unpacked
+          mkdir -p /tmp/unpacked
+          unzip -q /tmp/source.zip -d /tmp/unpacked
+
+      - name: Replace bootstrap files with source
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a /tmp/unpacked/open-equity-research/. .
+
+      - name: Install and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -e .
+          python -m compileall -q src tests
+          python -m unittest discover -s tests -v
+
+      - name: Publish source and tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Initial open-source release: evidence-first equity research MVP"
+          git tag -f v0.1.0
+          git push origin HEAD:main
+          git push --force origin refs/tags/v0.1.0

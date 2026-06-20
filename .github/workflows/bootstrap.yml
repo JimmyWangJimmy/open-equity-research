@@ -1,3 +1,4 @@
+# Second trigger after workflow registration
 name: Bootstrap source release
 
 on:

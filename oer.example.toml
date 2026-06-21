@@ -1,0 +1,9 @@
+# Copy this file to oer.toml and replace the SEC identity.
+
+[open_equity_research]
+workspace = "research"
+sec_user_agent = "Your Name your@email.com"
+request_interval_seconds = 0.15
+request_timeout_seconds = 30
+cache_ttl_hours = 12
+max_retries = 3

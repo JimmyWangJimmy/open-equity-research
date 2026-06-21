@@ -1,0 +1,16 @@
+{
+  "fields": [
+    "cik",
+    "name",
+    "ticker",
+    "exchange"
+  ],
+  "data": [
+    [
+      320193,
+      "Example Technology Inc.",
+      "EXM",
+      "Nasdaq"
+    ]
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "human_reviewed": false,
+  "review_notes": "Replace all values with company-specific, evidence-backed assumptions.",
+  "starting_free_cash_flow": null,
+  "net_cash": null,
+  "diluted_shares": null,
+  "market_price": null,
+  "scenarios": [
+    {
+      "name": "bear",
+      "growth_rates": [-0.05, -0.03, 0.0, 0.01, 0.02],
+      "discount_rate": 0.12,
+      "terminal_growth_rate": 0.015
+    },
+    {
+      "name": "base",
+      "growth_rates": [0.03, 0.03, 0.03, 0.03, 0.03],
+      "discount_rate": 0.10,
+      "terminal_growth_rate": 0.025
+    },
+    {
+      "name": "bull",
+      "growth_rates": [0.08, 0.07, 0.06, 0.05, 0.04],
+      "discount_rate": 0.09,
+      "terminal_growth_rate": 0.03
+    }
+  ]
+}

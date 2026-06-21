@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "open-equity-research"
+version = "0.1.0"
+description = "Evidence-first, agent-ready U.S. equity research from public SEC filings"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Jiaming Wang" }]
+keywords = ["equity-research", "sec-edgar", "agents", "xbrl", "valuation"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = []
+
+[project.scripts]
+equity-research = "open_equity_research.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/JimmyWangJimmy/open-equity-research"
+Repository = "https://github.com/JimmyWangJimmy/open-equity-research"
+Issues = "https://github.com/JimmyWangJimmy/open-equity-research/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+open_equity_research = ["py.typed"]

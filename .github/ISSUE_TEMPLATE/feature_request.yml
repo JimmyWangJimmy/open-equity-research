@@ -1,0 +1,23 @@
+name: Feature request
+description: Propose an evidence-backed research capability
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Research problem
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Proposed method and evidence provenance
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Failure modes and safety implications
+    validations:
+      required: true
